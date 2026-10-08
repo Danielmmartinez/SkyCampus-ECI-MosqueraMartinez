@@ -3,52 +3,52 @@
 import co.edu.escuelaing.dosw.skycampus.model.Mision;
 import java.util.List;
 
-<span class="nc" id="L6">public abstract class ValidadorLanzamiento {</span>
+<span class="fc" id="L6">public abstract class ValidadorLanzamiento {</span>
     protected ValidadorLanzamiento siguiente;
 
     public ValidadorLanzamiento enlazarCon(ValidadorLanzamiento siguiente) {
-<span class="nc" id="L10">        this.siguiente = siguiente;</span>
-<span class="nc" id="L11">        return siguiente;</span>
+<span class="fc" id="L10">        this.siguiente = siguiente;</span>
+<span class="fc" id="L11">        return siguiente;</span>
     }
 
     public abstract void validar(Mision mision);
 
     protected void validarSiguiente(Mision mision) {
-<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (siguiente != null) siguiente.validar(mision);</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (siguiente != null) siguiente.validar(mision);</span>
+<span class="fc" id="L18">    }</span>
 }
 
-<span class="nc" id="L21">class ValidadorBateria extends ValidadorLanzamiento {</span>
+<span class="fc" id="L21">class ValidadorBateria extends ValidadorLanzamiento {</span>
     @Override
     public void validar(Mision mision) {
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        if (mision.drone().bateria() &lt; 30) {</span>
-<span class="nc" id="L25">            throw new IllegalStateException(&quot;Rechazado: Batería inferior al 30%&quot;);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (mision.drone().bateria() &lt; 30) {</span>
+<span class="fc" id="L25">            throw new IllegalStateException(&quot;Rechazado: Batería inferior al 30%&quot;);</span>
         }
-<span class="nc" id="L27">        validarSiguiente(mision);</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L27">        validarSiguiente(mision);</span>
+<span class="fc" id="L28">    }</span>
 }
 
-<span class="nc" id="L31">class ValidadorDestino extends ValidadorLanzamiento {</span>
-<span class="nc" id="L32">    private static final List&lt;String&gt; DESTINOS = List.of(</span>
+<span class="fc" id="L31">class ValidadorDestino extends ValidadorLanzamiento {</span>
+<span class="fc" id="L32">    private static final List&lt;String&gt; DESTINOS = List.of(</span>
             &quot;Bloque A&quot;, &quot;Bloque B&quot;, &quot;Bloque C&quot;, &quot;Bloque D&quot;, &quot;Biblioteca&quot;
     );
 
     @Override
     public void validar(Mision mision) {
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (!DESTINOS.contains(mision.destino())) {</span>
-<span class="nc" id="L39">            throw new IllegalArgumentException(&quot;Rechazado: Destino fuera del campus ECI: &quot; + mision.destino());</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (!DESTINOS.contains(mision.destino())) {</span>
+<span class="fc" id="L39">            throw new IllegalArgumentException(&quot;Rechazado: Destino fuera del campus ECI: &quot; + mision.destino());</span>
         }
-<span class="nc" id="L41">        validarSiguiente(mision);</span>
-<span class="nc" id="L42">    }</span>
+<span class="fc" id="L41">        validarSiguiente(mision);</span>
+<span class="fc" id="L42">    }</span>
 }
 
-<span class="nc" id="L45">class ValidadorCarga extends ValidadorLanzamiento {</span>
+<span class="fc" id="L45">class ValidadorCarga extends ValidadorLanzamiento {</span>
     @Override
     public void validar(Mision mision) {
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (mision.tipoCarga() == null) {</span>
-<span class="nc" id="L49">            throw new IllegalStateException(&quot;Rechazado: Tipo de carga no asignado&quot;);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (mision.tipoCarga() == null) {</span>
+<span class="fc" id="L49">            throw new IllegalStateException(&quot;Rechazado: Tipo de carga no asignado&quot;);</span>
         }
-<span class="nc" id="L51">        validarSiguiente(mision);</span>
-<span class="nc" id="L52">    }</span>
+<span class="fc" id="L51">        validarSiguiente(mision);</span>
+<span class="fc" id="L52">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

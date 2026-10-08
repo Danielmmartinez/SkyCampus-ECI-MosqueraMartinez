@@ -1,1 +1,7 @@
+co/edu/escuelaing/dosw/skycampus/pattern/chain/ChainValidadorTest.class
+co/edu/escuelaing/dosw/skycampus/pattern/PatronesTest.class
+co/edu/escuelaing/dosw/skycampus/solid/SolidTest.class
+co/edu/escuelaing/dosw/skycampus/pattern/builder/MisionBuilderTest.class
 co/edu/escuelaing/dosw/skycampus/service/ValidatorMisionTest.class
+co/edu/escuelaing/dosw/skycampus/pattern/strategy/EstrategiaAsignacionTest.class
+co/edu/escuelaing/dosw/skycampus/service/ConsultaFlotaServiceTest.class
