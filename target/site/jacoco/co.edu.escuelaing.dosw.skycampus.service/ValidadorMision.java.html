@@ -4,25 +4,25 @@ import co.edu.escuelaing.dosw.skycampus.exception.DestinoInvalidoException;
 import co.edu.escuelaing.dosw.skycampus.model.Drone;
 import java.util.List;
 
-<span class="nc" id="L7">public class ValidadorMision {</span>
+<span class="fc" id="L7">public class ValidadorMision {</span>
 
-<span class="nc" id="L9">    private static final List&lt;String&gt; DESTINOS_VALIDOS = List.of(</span>
+<span class="fc" id="L9">    private static final List&lt;String&gt; DESTINOS_VALIDOS = List.of(</span>
             &quot;Bloque A&quot;, &quot;Bloque B&quot;, &quot;Bloque C&quot;, &quot;Bloque D&quot;, &quot;Biblioteca&quot;
     );
 
     public boolean tieneBateriaSuficiente(Drone drone) {
-<span class="nc bnc" id="L14" title="All 2 branches missed.">        if (drone == null) return false;</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        return drone.bateria() &gt;= 30;</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (drone == null) return false;</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        return drone.bateria() &gt;= 30;</span>
     }
 
     public void validarDestino(String destino) {
-<span class="nc bnc" id="L19" title="All 6 branches missed.">        if (destino == null || destino.trim().isEmpty() || !DESTINOS_VALIDOS.contains(destino.trim())) {</span>
-<span class="nc" id="L20">            throw new DestinoInvalidoException(&quot;Destino no permitido en el campus ECI: &quot; + destino);</span>
+<span class="fc bfc" id="L19" title="All 6 branches covered.">        if (destino == null || destino.trim().isEmpty() || !DESTINOS_VALIDOS.contains(destino.trim())) {</span>
+<span class="fc" id="L20">            throw new DestinoInvalidoException(&quot;Destino no permitido en el campus ECI: &quot; + destino);</span>
         }
-<span class="nc" id="L22">    }</span>
+<span class="fc" id="L22">    }</span>
 
     public boolean droneEstaDisponible(Drone drone) {
-<span class="nc bnc" id="L25" title="All 4 branches missed.">        return drone != null &amp;&amp; drone.disponible();</span>
+<span class="fc bfc" id="L25" title="All 4 branches covered.">        return drone != null &amp;&amp; drone.disponible();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
