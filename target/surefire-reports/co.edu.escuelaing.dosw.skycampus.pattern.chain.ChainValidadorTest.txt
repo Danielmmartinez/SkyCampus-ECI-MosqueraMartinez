@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: co.edu.escuelaing.dosw.skycampus.pattern.chain.ChainValidadorTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 s -- in co.edu.escuelaing.dosw.skycampus.pattern.chain.ChainValidadorTest
