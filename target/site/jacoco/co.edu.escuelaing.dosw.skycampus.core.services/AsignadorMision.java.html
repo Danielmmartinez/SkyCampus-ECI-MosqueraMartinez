@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AsignadorMision.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">skycampus-eci</a> &gt; <a href="index.source.html" class="el_package">co.edu.escuelaing.dosw.skycampus.core.services</a> &gt; <span class="el_source">AsignadorMision.java</span></div><h1>AsignadorMision.java</h1><pre class="source lang-java linenums">package co.edu.escuelaing.dosw.skycampus.core.services;
+
+import co.edu.escuelaing.dosw.skycampus.core.models.Drone;
+import co.edu.escuelaing.dosw.skycampus.core.models.Mision;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoDrone;
+import co.edu.escuelaing.dosw.skycampus.core.patterns.chain.ValidadorLanzamiento;
+import co.edu.escuelaing.dosw.skycampus.core.patterns.observer.GestorFlotaObservable;
+import co.edu.escuelaing.dosw.skycampus.core.patterns.strategy.EstrategiaAsignacion;
+
+import java.util.List;
+import java.util.Optional;
+
+public class AsignadorMision {
+    private final ApiMeteorologica apiClima;
+    private final EstrategiaAsignacion estrategia;
+    private final GestorFlotaObservable gestorFlota;
+    private final ValidadorLanzamiento validadorCadena;
+
+    public AsignadorMision(ApiMeteorologica apiClima,
+                           EstrategiaAsignacion estrategia,
+                           GestorFlotaObservable gestorFlota,
+<span class="nc" id="L22">                           ValidadorLanzamiento validadorCadena) {</span>
+<span class="nc" id="L23">        this.apiClima = apiClima;</span>
+<span class="nc" id="L24">        this.estrategia = estrategia;</span>
+<span class="nc" id="L25">        this.gestorFlota = gestorFlota;</span>
+<span class="nc" id="L26">        this.validadorCadena = validadorCadena;</span>
+<span class="nc" id="L27">    }</span>
+
+    public Optional&lt;Drone&gt; asignar(List&lt;Drone&gt; flota, Mision mision) {
+        // 1. Verificación del clima externo
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (!apiClima.esAptoParaVuelo(mision.origen(), mision.destino())) {</span>
+<span class="nc" id="L32">            return Optional.empty();</span>
+        }
+
+        // 2. Selección según Strategy
+<span class="nc" id="L36">        Optional&lt;Drone&gt; seleccionado = estrategia.seleccionarDrone(flota, mision);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (seleccionado.isEmpty()) {</span>
+<span class="nc" id="L38">            return Optional.empty();</span>
+        }
+
+<span class="nc" id="L41">        Drone drone = seleccionado.get();</span>
+
+        // 3. Validación por Cadena de Responsabilidad
+<span class="nc" id="L44">        Mision misionConDrone = new Mision(</span>
+<span class="nc" id="L45">                mision.id(), drone, mision.origen(), mision.destino(),</span>
+<span class="nc" id="L46">                mision.pesoPaqueteGramos(), mision.tipoCarga(), mision.prioridad(),</span>
+<span class="nc" id="L47">                mision.estado(), mision.fechaCreacion(), mision.notas()</span>
+        );
+
+        try {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (validadorCadena != null) {</span>
+<span class="nc" id="L52">                validadorCadena.validar(misionConDrone);</span>
+            }
+<span class="nc" id="L54">        } catch (RuntimeException ex) {</span>
+<span class="nc" id="L55">            return Optional.empty();</span>
+<span class="nc" id="L56">        }</span>
+
+        // 4. Notificación reactiva al Observer
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (gestorFlota != null) {</span>
+<span class="nc" id="L60">            gestorFlota.notificarCambio(drone, EstadoDrone.EN_VUELO);</span>
+        }
+
+<span class="nc" id="L63">        return Optional.of(drone);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
