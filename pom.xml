@@ -7,11 +7,11 @@
 
     <groupId>co.edu.escuelaing.dosw</groupId>
     <artifactId>skycampus-eci</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>skycampus-eci</name>
-    <description>Sistema de gestión y despacho autónomo de drones - SkyCampus Monferno</description>
+    <description>Sistema de gestión y despacho autónomo de drones - SkyCampus Infernape Enterprise</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -23,15 +23,12 @@
     </properties>
 
     <dependencies>
-        <!-- Pruebas JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Mockito para simular servicios externos (API Clima) -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
@@ -48,7 +45,7 @@
                 <version>3.13.0</version>
             </plugin>
 
-            <!-- JaCoCo Plugin: Cobertura Line 80% y Branch 70% obligatoria en Monferno -->
+            <!-- JaCoCo Quality Gate: 85% Line y 75% Branch obligatorio para Infernape -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -73,12 +70,12 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.80</minimum>
+                                            <minimum>0.85</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.70</minimum>
+                                            <minimum>0.75</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
