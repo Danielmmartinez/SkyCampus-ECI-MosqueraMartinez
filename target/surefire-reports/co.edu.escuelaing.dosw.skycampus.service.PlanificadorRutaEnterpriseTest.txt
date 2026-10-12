@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: co.edu.escuelaing.dosw.skycampus.service.PlanificadorRutaEnterpriseTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.621 s -- in co.edu.escuelaing.dosw.skycampus.service.PlanificadorRutaEnterpriseTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.685 s -- in co.edu.escuelaing.dosw.skycampus.service.PlanificadorRutaEnterpriseTest

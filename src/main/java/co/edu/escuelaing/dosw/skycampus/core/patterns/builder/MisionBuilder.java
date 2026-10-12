@@ -26,10 +26,16 @@ public class MisionBuilder {
     public MisionBuilder pesoPaqueteGramos(int peso) { this.pesoPaqueteGramos = peso; return this; }
     public MisionBuilder tipoCarga(TipoCarga carga) { this.tipoCarga = carga; return this; }
     public MisionBuilder prioridad(Prioridad prioridad) { this.prioridad = prioridad; return this; }
+
     public MisionBuilder prioridad(int p) {
-        this.prioridad = (p == 1) ? Prioridad.URGENTE : ((p == 2) ? Prioridad.NORMAL : Prioridad.BAJO);
+        this.prioridad = switch (p) {
+            case 1 -> Prioridad.URGENTE;
+            case 2 -> Prioridad.NORMAL;
+            default -> Prioridad.BAJO;
+        };
         return this;
     }
+
     public MisionBuilder estado(EstadoMision estado) { this.estado = estado; return this; }
     public MisionBuilder notas(String notas) { this.notas = notas; return this; }
 

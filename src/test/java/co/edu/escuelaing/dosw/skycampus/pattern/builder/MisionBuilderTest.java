@@ -42,10 +42,17 @@ class MisionBuilderTest {
     void build_camposIncompletos_lanzaExcepcion() {
         Drone drone = new Drone("D-01", "DJI Mini 3", 80, true, "Bloque A");
 
-        assertThrows(IllegalStateException.class, () -> new MisionBuilder().drone(drone).origen("Bloque A").destino("Biblioteca").build());
-        assertThrows(IllegalStateException.class, () -> new MisionBuilder().id("M-01").origen("Bloque A").destino("Biblioteca").build());
-        assertThrows(IllegalStateException.class, () -> new MisionBuilder().id("M-01").drone(drone).destino("Biblioteca").build());
-        assertThrows(IllegalStateException.class, () -> new MisionBuilder().id("M-01").drone(drone).origen("Bloque A").build());
+        MisionBuilder b1 = new MisionBuilder().drone(drone).origen("Bloque A").destino("Biblioteca");
+        assertThrows(IllegalStateException.class, b1::build);
+
+        MisionBuilder b2 = new MisionBuilder().id("M-01").origen("Bloque A").destino("Biblioteca");
+        assertThrows(IllegalStateException.class, b2::build);
+
+        MisionBuilder b3 = new MisionBuilder().id("M-01").drone(drone).destino("Biblioteca");
+        assertThrows(IllegalStateException.class, b3::build);
+
+        MisionBuilder b4 = new MisionBuilder().id("M-01").drone(drone).origen("Bloque A");
+        assertThrows(IllegalStateException.class, b4::build);
     }
 
     @Test

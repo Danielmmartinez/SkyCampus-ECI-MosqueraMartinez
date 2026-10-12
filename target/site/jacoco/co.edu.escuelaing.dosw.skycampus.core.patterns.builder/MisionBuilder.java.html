@@ -26,18 +26,24 @@ import java.time.LocalDateTime;
 <span class="fc" id="L26">    public MisionBuilder pesoPaqueteGramos(int peso) { this.pesoPaqueteGramos = peso; return this; }</span>
 <span class="fc" id="L27">    public MisionBuilder tipoCarga(TipoCarga carga) { this.tipoCarga = carga; return this; }</span>
 <span class="fc" id="L28">    public MisionBuilder prioridad(Prioridad prioridad) { this.prioridad = prioridad; return this; }</span>
+
     public MisionBuilder prioridad(int p) {
-<span class="fc bfc" id="L30" title="All 4 branches covered.">        this.prioridad = (p == 1) ? Prioridad.URGENTE : ((p == 2) ? Prioridad.NORMAL : Prioridad.BAJO);</span>
-<span class="fc" id="L31">        return this;</span>
+<span class="fc bfc" id="L31" title="All 3 branches covered.">        this.prioridad = switch (p) {</span>
+<span class="fc" id="L32">            case 1 -&gt; Prioridad.URGENTE;</span>
+<span class="fc" id="L33">            case 2 -&gt; Prioridad.NORMAL;</span>
+<span class="fc" id="L34">            default -&gt; Prioridad.BAJO;</span>
+        };
+<span class="fc" id="L36">        return this;</span>
     }
-<span class="nc" id="L33">    public MisionBuilder estado(EstadoMision estado) { this.estado = estado; return this; }</span>
-<span class="fc" id="L34">    public MisionBuilder notas(String notas) { this.notas = notas; return this; }</span>
+
+<span class="nc" id="L39">    public MisionBuilder estado(EstadoMision estado) { this.estado = estado; return this; }</span>
+<span class="fc" id="L40">    public MisionBuilder notas(String notas) { this.notas = notas; return this; }</span>
 
     public Mision build() {
-<span class="fc bfc" id="L37" title="All 8 branches covered.">        if (id == null || drone == null || origen == null || destino == null) {</span>
-<span class="fc" id="L38">            throw new IllegalStateException(&quot;id, drone, origen y destino son campos obligatorios&quot;);</span>
+<span class="fc bfc" id="L43" title="All 8 branches covered.">        if (id == null || drone == null || origen == null || destino == null) {</span>
+<span class="fc" id="L44">            throw new IllegalStateException(&quot;id, drone, origen y destino son campos obligatorios&quot;);</span>
         }
-<span class="fc" id="L40">        return new Mision(id, drone, origen, destino, pesoPaqueteGramos, tipoCarga, prioridad, estado, LocalDateTime.now(), notas);</span>
+<span class="fc" id="L46">        return new Mision(id, drone, origen, destino, pesoPaqueteGramos, tipoCarga, prioridad, estado, LocalDateTime.now(), notas);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
