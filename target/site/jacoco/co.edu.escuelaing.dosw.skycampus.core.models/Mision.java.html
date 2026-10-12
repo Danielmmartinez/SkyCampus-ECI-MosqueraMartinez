@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Mision.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">skycampus-eci</a> &gt; <a href="index.source.html" class="el_package">co.edu.escuelaing.dosw.skycampus.core.models</a> &gt; <span class="el_source">Mision.java</span></div><h1>Mision.java</h1><pre class="source lang-java linenums">package co.edu.escuelaing.dosw.skycampus.core.models;
+
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoMision;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.Prioridad;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoCarga;
+
+import java.time.LocalDateTime;
+
+<span class="fc" id="L9">public record Mision(</span>
+        String id,
+        Drone drone,
+        String origen,
+        String destino,
+        int pesoPaqueteGramos,
+        TipoCarga tipoCarga,
+        Prioridad prioridad,
+        EstadoMision estado,
+        LocalDateTime fechaCreacion,
+        String notas,
+        String sede,
+        double tiempoEntregaMinutos
+) {
+    // Constructor de 10 parámetros de Monferno
+    public Mision(String id, Drone drone, String origen, String destino, int pesoPaqueteGramos,
+                  TipoCarga tipoCarga, Prioridad prioridad, EstadoMision estado,
+                  LocalDateTime fechaCreacion, String notas) {
+<span class="fc" id="L27">        this(id, drone, origen, destino, pesoPaqueteGramos, tipoCarga, prioridad, estado, fechaCreacion, notas, &quot;ECI&quot;, 15.0);</span>
+<span class="fc" id="L28">    }</span>
+
+    // Constructor simplificado de Chimchar
+    public Mision(String id, Drone drone, String origen, String destino, TipoCarga tipoCarga, EstadoMision estado) {
+<span class="fc" id="L32">        this(id, drone, origen, destino, 200, tipoCarga, Prioridad.NORMAL, estado, LocalDateTime.now(), &quot;&quot;, &quot;ECI&quot;, 15.0);</span>
+<span class="fc" id="L33">    }</span>
+
+    public Mision conDrone(Drone nuevoDrone, EstadoMision nuevoEstado) {
+<span class="fc" id="L36">        return new Mision(this.id, nuevoDrone, this.origen, this.destino, this.pesoPaqueteGramos, this.tipoCarga,</span>
+                this.prioridad, nuevoEstado, this.fechaCreacion, this.notas, this.sede, this.tiempoEntregaMinutos);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

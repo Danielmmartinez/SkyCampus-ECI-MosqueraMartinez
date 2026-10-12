@@ -1,6 +1,7 @@
 package co.edu.escuelaing.dosw.skycampus.service;
 
-import co.edu.escuelaing.dosw.skycampus.model.Drone;
+import co.edu.escuelaing.dosw.skycampus.core.models.Drone;
+import co.edu.escuelaing.dosw.skycampus.core.services.ConsultaFlotaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

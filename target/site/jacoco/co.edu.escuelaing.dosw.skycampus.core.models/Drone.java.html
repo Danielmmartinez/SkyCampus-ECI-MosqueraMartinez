@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Drone.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">skycampus-eci</a> &gt; <a href="index.source.html" class="el_package">co.edu.escuelaing.dosw.skycampus.core.models</a> &gt; <span class="el_source">Drone.java</span></div><h1>Drone.java</h1><pre class="source lang-java linenums">package co.edu.escuelaing.dosw.skycampus.core.models;
+
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoDrone;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoDrone;
+
+<span class="fc" id="L6">public record Drone(</span>
+        String id,
+        String modelo,
+        TipoDrone tipo,
+        int bateria,
+        boolean disponible,
+        EstadoDrone estado,
+        String ubicacion,
+        String sede
+) {
+    // Constructor para compatibilidad total con Monferno
+    public Drone(String id, String modelo, TipoDrone tipo, int bateria, boolean disponible, EstadoDrone estado, String ubicacion) {
+<span class="fc" id="L18">        this(id, modelo, tipo, bateria, disponible, estado, ubicacion, &quot;ECI&quot;);</span>
+<span class="fc" id="L19">    }</span>
+
+    // Constructor de 5 parámetros para compatibilidad total con Chimchar
+    public Drone(String id, String modelo, int bateria, boolean disponible, String ubicacion) {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        this(id, modelo, TipoDrone.MINI, bateria, disponible, disponible ? EstadoDrone.DISPONIBLE : EstadoDrone.EN_MANTENIMIENTO, ubicacion, &quot;ECI&quot;);</span>
+<span class="fc" id="L24">    }</span>
+
+    public boolean tieneBateriaSuficiente(int minimo) {
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        return this.bateria &gt;= minimo;</span>
+    }
+
+    public boolean soportaPeso(int pesoGramos) {
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">        return this.tipo != null &amp;&amp; this.tipo.getCapacidadGramos() &gt;= pesoGramos;</span>
+    }
+
+    public Drone conEstado(EstadoDrone nuevoEstado, boolean nuevaDisponibilidad) {
+<span class="fc" id="L35">        return new Drone(this.id, this.modelo, this.tipo, this.bateria, nuevaDisponibilidad, nuevoEstado, this.ubicacion, this.sede);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,76 +1,72 @@
 package co.edu.escuelaing.dosw.skycampus.pattern.chain;
 
-import co.edu.escuelaing.dosw.skycampus.model.Drone;
-import co.edu.escuelaing.dosw.skycampus.model.EstadoMision;
-import co.edu.escuelaing.dosw.skycampus.model.Mision;
-import co.edu.escuelaing.dosw.skycampus.model.TipoCarga;
+import co.edu.escuelaing.dosw.skycampus.core.models.Drone;
+import co.edu.escuelaing.dosw.skycampus.core.models.Mision;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoDrone;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoMision;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.Prioridad;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoCarga;
+import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoDrone;
+import co.edu.escuelaing.dosw.skycampus.core.patterns.chain.ValidadorBateria;
+import co.edu.escuelaing.dosw.skycampus.core.patterns.chain.ValidadorCarga;
+import co.edu.escuelaing.dosw.skycampus.core.patterns.chain.ValidadorDestino;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChainValidadorTest {
 
-    private ValidadorLanzamiento cadena;
+    private ValidadorDestino cadena;
 
     @BeforeEach
     void setUp() {
+        cadena = new ValidadorDestino();
         ValidadorBateria valBateria = new ValidadorBateria();
-        ValidadorDestino valDestino = new ValidadorDestino();
         ValidadorCarga valCarga = new ValidadorCarga();
 
-        // Enlazar la cadena: Batería -> Destino -> Carga
-        valBateria.enlazarCon(valDestino).enlazarCon(valCarga);
-        cadena = valBateria;
+        cadena.enlazarCon(valBateria).enlazarCon(valCarga);
     }
 
     @Test
-    @DisplayName("Cadena completa: Misión válida pasa todas las validaciones sin lanzar excepción")
+    @DisplayName("Cadena: Misión válida pasa sin lanzar excepciones")
     void cadena_misionValida_noLanzaExcepcion() {
-        Drone drone = new Drone("D-01", "DJI Mini 3", 80, true, "Bloque A");
-        Mision mision = new Mision("M-01", drone, "Bloque A", "Biblioteca", TipoCarga.SOBRE, EstadoMision.PENDIENTE);
+        Drone drone = new Drone("D-01", "DJI", TipoDrone.CARGO, 80, true, EstadoDrone.DISPONIBLE, "Bloque A");
+        Mision mision = new Mision("M-01", drone, "Bloque A", "Biblioteca", 200, TipoCarga.SOBRE, Prioridad.NORMAL, EstadoMision.PENDIENTE, LocalDateTime.now(), "");
 
         assertDoesNotThrow(() -> cadena.validar(mision));
     }
 
     @Test
-    @DisplayName("ValidadorBateria: Batería menor a 30% lanza IllegalStateException")
-    void validadorBateria_bateriaBaja_lanzaExcepcion() {
-        Drone drone = new Drone("D-02", "DJI Mini 3", 20, true, "Bloque A");
-        Mision mision = new Mision("M-02", drone, "Bloque A", "Bloque B", TipoCarga.SOBRE, EstadoMision.PENDIENTE);
-
-        IllegalStateException ex = assertThrows(IllegalStateException.class, () -> cadena.validar(mision));
-        assertTrue(ex.getMessage().contains("Batería inferior al 30%"));
-    }
-
-    @Test
     @DisplayName("ValidadorDestino: Destino fuera del campus lanza IllegalArgumentException")
-    void validadorDestino_destinoInvalido_lanzaExcepcion() {
-        Drone drone = new Drone("D-03", "DJI Mini 3", 75, true, "Bloque A");
-        Mision mision = new Mision("M-03", drone, "Bloque A", "Plaza Central", TipoCarga.SOBRE, EstadoMision.PENDIENTE);
+    void cadena_destinoInvalido_lanzaExcepcion() {
+        Drone drone = new Drone("D-01", "DJI", TipoDrone.MINI, 80, true, EstadoDrone.DISPONIBLE, "Bloque A");
+        Mision mision = new Mision("M-02", drone, "Bloque A", "Plaza Central", TipoCarga.SOBRE, EstadoMision.PENDIENTE);
 
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> cadena.validar(mision));
         assertTrue(ex.getMessage().contains("Destino fuera del campus ECI"));
     }
 
     @Test
-    @DisplayName("ValidadorCarga: Carga nula lanza IllegalStateException")
-    void validadorCarga_cargaNula_lanzaExcepcion() {
-        Drone drone = new Drone("D-04", "DJI Mini 3", 75, true, "Bloque A");
-        Mision mision = new Mision("M-04", drone, "Bloque A", "Bloque C", null, EstadoMision.PENDIENTE);
+    @DisplayName("ValidadorBateria: Batería menor a 30% lanza IllegalStateException")
+    void cadena_bateriaBaja_lanzaExcepcion() {
+        Drone drone = new Drone("D-02", "DJI", TipoDrone.MINI, 20, true, EstadoDrone.DISPONIBLE, "Bloque A");
+        Mision mision = new Mision("M-03", drone, "Bloque A", "Bloque B", TipoCarga.SOBRE, EstadoMision.PENDIENTE);
 
         IllegalStateException ex = assertThrows(IllegalStateException.class, () -> cadena.validar(mision));
-        assertTrue(ex.getMessage().contains("Tipo de carga no asignado"));
+        assertTrue(ex.getMessage().contains("Batería inferior al 30%"));
     }
 
     @Test
-    @DisplayName("Validador sin siguiente: Valida correctamente cuando siguiente es null")
-    void validador_sinSiguiente_completaValidacion() {
-        ValidadorCarga valCarga = new ValidadorCarga();
-        Drone drone = new Drone("D-05", "DJI Mini 3", 90, true, "Bloque A");
-        Mision mision = new Mision("M-05", drone, "Bloque A", "Bloque D", TipoCarga.LIBRO, EstadoMision.PENDIENTE);
+    @DisplayName("ValidadorCarga: Carga que supera capacidad máxima lanza IllegalStateException")
+    void cadena_sobrepeso_lanzaExcepcion() {
+        Drone mini = new Drone("D-03", "DJI", TipoDrone.MINI, 90, true, EstadoDrone.DISPONIBLE, "Bloque A"); // 500g max
+        Mision mision = new Mision("M-04", mini, "Bloque A", "Bloque B", 700, TipoCarga.EQUIPO, Prioridad.NORMAL, EstadoMision.PENDIENTE, LocalDateTime.now(), "");
 
-        assertDoesNotThrow(() -> valCarga.validar(mision));
+        IllegalStateException ex = assertThrows(IllegalStateException.class, () -> cadena.validar(mision));
+        assertTrue(ex.getMessage().contains("La carga supera la capacidad del drone"));
     }
 }
