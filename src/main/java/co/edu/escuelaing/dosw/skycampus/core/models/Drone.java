@@ -10,11 +10,17 @@ public record Drone(
         int bateria,
         boolean disponible,
         EstadoDrone estado,
-        String ubicacion
+        String ubicacion,
+        String sede
 ) {
-    // Constructor de 5 parámetros para mantener compatibilidad total
+    // Constructor para compatibilidad total con Monferno
+    public Drone(String id, String modelo, TipoDrone tipo, int bateria, boolean disponible, EstadoDrone estado, String ubicacion) {
+        this(id, modelo, tipo, bateria, disponible, estado, ubicacion, "ECI");
+    }
+
+    // Constructor de 5 parámetros para compatibilidad total con Chimchar
     public Drone(String id, String modelo, int bateria, boolean disponible, String ubicacion) {
-        this(id, modelo, TipoDrone.MINI, bateria, disponible, disponible ? EstadoDrone.DISPONIBLE : EstadoDrone.EN_MANTENIMIENTO, ubicacion);
+        this(id, modelo, TipoDrone.MINI, bateria, disponible, disponible ? EstadoDrone.DISPONIBLE : EstadoDrone.EN_MANTENIMIENTO, ubicacion, "ECI");
     }
 
     public boolean tieneBateriaSuficiente(int minimo) {
@@ -26,6 +32,6 @@ public record Drone(
     }
 
     public Drone conEstado(EstadoDrone nuevoEstado, boolean nuevaDisponibilidad) {
-        return new Drone(this.id, this.modelo, this.tipo, this.bateria, nuevaDisponibilidad, nuevoEstado, this.ubicacion);
+        return new Drone(this.id, this.modelo, this.tipo, this.bateria, nuevaDisponibilidad, nuevoEstado, this.ubicacion, this.sede);
     }
 }

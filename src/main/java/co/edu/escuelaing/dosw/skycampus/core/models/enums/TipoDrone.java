@@ -3,7 +3,9 @@ package co.edu.escuelaing.dosw.skycampus.core.models.enums;
 public enum TipoDrone {
     MINI(500),
     EXPRESS(800),
-    CARGO(2000);
+    CARGO(2000),
+    HEAVY(5000),
+    ENDURANCE(1500);
 
     private final int capacidadGramos;
 
