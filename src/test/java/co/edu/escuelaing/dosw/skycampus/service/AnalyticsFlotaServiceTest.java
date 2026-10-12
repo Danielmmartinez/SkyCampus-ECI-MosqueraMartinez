@@ -98,4 +98,25 @@ class AnalyticsFlotaServiceTest {
         assertTrue(analytics.existeMisionUrgenteRetrasada(List.of(retrasada), 10));
         assertFalse(analytics.existeMisionUrgenteRetrasada(List.of(aTiempo), 10));
     }
+
+    @Test
+    @DisplayName("Analytics: Contar misiones urgentes en vuelo por tipo")
+    void misionesUrgentesPorTipo_cuentaCorrectamente() {
+        Drone mini = new Drone("D-01", "DJI", TipoDrone.MINI, 90, true, EstadoDrone.DISPONIBLE, "A");
+        List<Mision> misiones = List.of(
+                new Mision("M-1", mini, "A", "B", 100, TipoCarga.SOBRE, Prioridad.URGENTE, EstadoMision.EN_VUELO, LocalDateTime.now(), ""),
+                new Mision("M-2", mini, "A", "B", 100, TipoCarga.SOBRE, Prioridad.NORMAL, EstadoMision.EN_VUELO, LocalDateTime.now(), "")
+        );
+        Map<TipoDrone, Long> res = analytics.misionesUrgentesPorTipo(misiones);
+        assertEquals(1L, res.get(TipoDrone.MINI));
+    }
+
+    @Test
+    @DisplayName("Analytics: Casos vacíos de drone con más misiones y fecha nula")
+    void casosLimite_analytics() {
+        assertTrue(analytics.droneConMasMisionesCompletadas(List.of()).isEmpty());
+
+        Mision fechaNula = new Mision("M-X", null, "A", "B", 100, TipoCarga.SOBRE, Prioridad.URGENTE, EstadoMision.PENDIENTE, null, "");
+        assertFalse(analytics.existeMisionUrgenteRetrasada(List.of(fechaNula), 10));
+    }
 }

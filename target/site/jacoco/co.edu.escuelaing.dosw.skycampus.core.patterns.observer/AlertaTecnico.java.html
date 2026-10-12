@@ -3,18 +3,18 @@
 import co.edu.escuelaing.dosw.skycampus.core.models.Drone;
 import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoDrone;
 
-<span class="nc" id="L6">public class AlertaTecnico implements ObservadorDrone {</span>
-<span class="nc" id="L7">    private boolean alertaDisparada = false;</span>
+<span class="fc" id="L6">public class AlertaTecnico implements ObservadorDrone {</span>
+<span class="fc" id="L7">    private boolean alertaDisparada = false;</span>
 
     @Override
     public void onEstadoCambiado(Drone drone, EstadoDrone nuevoEstado) {
-<span class="nc bnc" id="L11" title="All 2 branches missed.">        if (nuevoEstado == EstadoDrone.FALLO) {</span>
-<span class="nc" id="L12">            this.alertaDisparada = true;</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (nuevoEstado == EstadoDrone.FALLO) {</span>
+<span class="fc" id="L12">            this.alertaDisparada = true;</span>
         }
-<span class="nc" id="L14">    }</span>
+<span class="fc" id="L14">    }</span>
 
     public boolean isAlertaDisparada() {
-<span class="nc" id="L17">        return alertaDisparada;</span>
+<span class="fc" id="L17">        return alertaDisparada;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

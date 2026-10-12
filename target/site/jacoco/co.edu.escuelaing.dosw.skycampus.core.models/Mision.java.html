@@ -6,7 +6,7 @@ import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoCarga;
 
 import java.time.LocalDateTime;
 
-<span class="nc" id="L9">public record Mision(</span>
+<span class="fc" id="L9">public record Mision(</span>
         String id,
         Drone drone,
         String origen,
@@ -16,15 +16,25 @@ import java.time.LocalDateTime;
         Prioridad prioridad,
         EstadoMision estado,
         LocalDateTime fechaCreacion,
-        String notas
+        String notas,
+        String sede,
+        double tiempoEntregaMinutos
 ) {
-    // Constructor simplificado para misiones estándar
+    // Constructor de 10 parámetros de Monferno
+    public Mision(String id, Drone drone, String origen, String destino, int pesoPaqueteGramos,
+                  TipoCarga tipoCarga, Prioridad prioridad, EstadoMision estado,
+                  LocalDateTime fechaCreacion, String notas) {
+<span class="fc" id="L27">        this(id, drone, origen, destino, pesoPaqueteGramos, tipoCarga, prioridad, estado, fechaCreacion, notas, &quot;ECI&quot;, 15.0);</span>
+<span class="fc" id="L28">    }</span>
+
+    // Constructor simplificado de Chimchar
     public Mision(String id, Drone drone, String origen, String destino, TipoCarga tipoCarga, EstadoMision estado) {
-<span class="nc" id="L23">        this(id, drone, origen, destino, 200, tipoCarga, Prioridad.NORMAL, estado, LocalDateTime.now(), &quot;&quot;);</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L32">        this(id, drone, origen, destino, 200, tipoCarga, Prioridad.NORMAL, estado, LocalDateTime.now(), &quot;&quot;, &quot;ECI&quot;, 15.0);</span>
+<span class="fc" id="L33">    }</span>
 
     public Mision conDrone(Drone nuevoDrone, EstadoMision nuevoEstado) {
-<span class="nc" id="L27">        return new Mision(this.id, nuevoDrone, this.origen, this.destino, this.pesoPaqueteGramos, this.tipoCarga, this.prioridad, nuevoEstado, this.fechaCreacion, this.notas);</span>
+<span class="fc" id="L36">        return new Mision(this.id, nuevoDrone, this.origen, this.destino, this.pesoPaqueteGramos, this.tipoCarga,</span>
+                this.prioridad, nuevoEstado, this.fechaCreacion, this.notas, this.sede, this.tiempoEntregaMinutos);
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

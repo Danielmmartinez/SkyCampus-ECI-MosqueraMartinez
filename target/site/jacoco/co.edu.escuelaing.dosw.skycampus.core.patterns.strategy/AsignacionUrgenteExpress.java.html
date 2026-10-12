@@ -8,14 +8,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-<span class="nc" id="L11">public class AsignacionUrgenteExpress implements EstrategiaAsignacion {</span>
+<span class="fc" id="L11">public class AsignacionUrgenteExpress implements EstrategiaAsignacion {</span>
     @Override
     public Optional&lt;Drone&gt; seleccionarDrone(List&lt;Drone&gt; flota, Mision mision) {
-<span class="nc" id="L14">        return flota.stream()</span>
-<span class="nc" id="L15">                .filter(Drone::disponible)</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">                .filter(d -&gt; d.tipo() == TipoDrone.EXPRESS)</span>
-<span class="nc" id="L17">                .max(Comparator.comparingInt(Drone::bateria))</span>
-<span class="nc" id="L18">                .or(() -&gt; flota.stream()</span>
+<span class="fc" id="L14">        return flota.stream()</span>
+<span class="fc" id="L15">                .filter(Drone::disponible)</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">                .filter(d -&gt; d.tipo() == TipoDrone.EXPRESS)</span>
+<span class="fc" id="L17">                .max(Comparator.comparingInt(Drone::bateria))</span>
+<span class="pc" id="L18">                .or(() -&gt; flota.stream()</span>
 <span class="nc" id="L19">                        .filter(Drone::disponible)</span>
 <span class="nc" id="L20">                        .max(Comparator.comparingInt(Drone::bateria)));</span>
     }

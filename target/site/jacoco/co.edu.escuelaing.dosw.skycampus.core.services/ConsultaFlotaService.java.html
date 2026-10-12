@@ -5,32 +5,32 @@ import co.edu.escuelaing.dosw.skycampus.core.models.Drone;
 import java.util.Comparator;
 import java.util.List;
 
-<span class="nc" id="L8">public class ConsultaFlotaService {</span>
+<span class="fc" id="L8">public class ConsultaFlotaService {</span>
 
     public List&lt;String&gt; obtenerDisponiblesBateriaAlta(List&lt;Drone&gt; flota) {
-<span class="nc" id="L11">        return flota.stream()</span>
-<span class="nc" id="L12">                .filter(Drone::disponible)</span>
-<span class="nc bnc" id="L13" title="All 2 branches missed.">                .filter(d -&gt; d.bateria() &gt;= 50)</span>
-<span class="nc" id="L14">                .sorted(Comparator.comparingInt(Drone::bateria).reversed())</span>
-<span class="nc" id="L15">                .map(Drone::id)</span>
-<span class="nc" id="L16">                .toList();</span>
+<span class="fc" id="L11">        return flota.stream()</span>
+<span class="fc" id="L12">                .filter(Drone::disponible)</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">                .filter(d -&gt; d.bateria() &gt;= 50)</span>
+<span class="fc" id="L14">                .sorted(Comparator.comparingInt(Drone::bateria).reversed())</span>
+<span class="fc" id="L15">                .map(Drone::id)</span>
+<span class="fc" id="L16">                .toList();</span>
     }
 
     public boolean hayDroneDisponibleEnBloqueC(List&lt;Drone&gt; flota) {
-<span class="nc" id="L20">        return flota.stream()</span>
-<span class="nc bnc" id="L21" title="All 4 branches missed.">                .anyMatch(d -&gt; d.disponible() &amp;&amp; &quot;Bloque C&quot;.equalsIgnoreCase(d.ubicacion()));</span>
+<span class="fc" id="L20">        return flota.stream()</span>
+<span class="fc bfc" id="L21" title="All 4 branches covered.">                .anyMatch(d -&gt; d.disponible() &amp;&amp; &quot;Bloque C&quot;.equalsIgnoreCase(d.ubicacion()));</span>
     }
 
     public long contarDronesBateriaCritica(List&lt;Drone&gt; flota) {
-<span class="nc" id="L25">        return flota.stream()</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">                .filter(d -&gt; d.bateria() &lt; 20)</span>
-<span class="nc" id="L27">                .count();</span>
+<span class="fc" id="L25">        return flota.stream()</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">                .filter(d -&gt; d.bateria() &lt; 20)</span>
+<span class="fc" id="L27">                .count();</span>
     }
 
     public List&lt;String&gt; formatearIdYBateria(List&lt;Drone&gt; flota) {
-<span class="nc" id="L31">        return flota.stream()</span>
-<span class="nc" id="L32">                .map(d -&gt; d.id() + &quot;: &quot; + d.bateria() + &quot;%&quot;)</span>
-<span class="nc" id="L33">                .toList();</span>
+<span class="fc" id="L31">        return flota.stream()</span>
+<span class="fc" id="L32">                .map(d -&gt; d.id() + &quot;: &quot; + d.bateria() + &quot;%&quot;)</span>
+<span class="fc" id="L33">                .toList();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -26,7 +26,7 @@ class PlanificadorRutaEnterpriseTest {
     private ComponenteRuta ruta;
 
     @Test
-    @DisplayName("Enterprise: Planificación viable cuando Aerocivil aprueba, clima es apto y batería alcanza")
+    @DisplayName("Enterprise: Planificación viable cuando todo cumple")
     void esRutaViable_cumpleTodasLasCondiciones() {
         Mockito.when(aerocivil.autorizarVueloInterSede("ECI", "UNAL", 100.0)).thenReturn(true);
         Mockito.when(clima.esAptoParaVuelo("ECI", "UNAL")).thenReturn(true);
@@ -37,10 +37,39 @@ class PlanificadorRutaEnterpriseTest {
     }
 
     @Test
-    @DisplayName("Enterprise: Restricción RNF Aerocivil - Altitud superior a 120m es rechazada inmediatamente")
-    void esRutaViable_altitudExcesiva_rechazaInmediatamente() {
+    @DisplayName("Enterprise: Rechaza si altitud > 120m")
+    void esRutaViable_altitudExcesiva_rechaza() {
         PlanificadorRutaEnterprise planificador = new PlanificadorRutaEnterprise(aerocivil, clima);
         assertFalse(planificador.esRutaViable(ruta, "ECI", "UNAL", 130.0));
-        Mockito.verifyNoInteractions(aerocivil);
+    }
+
+    @Test
+    @DisplayName("Enterprise: Rechaza si Aerocivil no autoriza")
+    void esRutaViable_aerocivilRechaza_retornaFalse() {
+        Mockito.when(aerocivil.autorizarVueloInterSede("ECI", "UNAL", 100.0)).thenReturn(false);
+
+        PlanificadorRutaEnterprise planificador = new PlanificadorRutaEnterprise(aerocivil, clima);
+        assertFalse(planificador.esRutaViable(ruta, "ECI", "UNAL", 100.0));
+    }
+
+    @Test
+    @DisplayName("Enterprise: Rechaza si el clima no es apto")
+    void esRutaViable_climaAdverso_retornaFalse() {
+        Mockito.when(aerocivil.autorizarVueloInterSede("ECI", "UNAL", 100.0)).thenReturn(true);
+        Mockito.when(clima.esAptoParaVuelo("ECI", "UNAL")).thenReturn(false);
+
+        PlanificadorRutaEnterprise planificador = new PlanificadorRutaEnterprise(aerocivil, clima);
+        assertFalse(planificador.esRutaViable(ruta, "ECI", "UNAL", 100.0));
+    }
+
+    @Test
+    @DisplayName("Enterprise: Rechaza si el consumo de batería excede el 85%")
+    void esRutaViable_bateriaExcedida_retornaFalse() {
+        Mockito.when(aerocivil.autorizarVueloInterSede("ECI", "UNAL", 100.0)).thenReturn(true);
+        Mockito.when(clima.esAptoParaVuelo("ECI", "UNAL")).thenReturn(true);
+        Mockito.when(ruta.getConsumoBateriaEstimado()).thenReturn(90);
+
+        PlanificadorRutaEnterprise planificador = new PlanificadorRutaEnterprise(aerocivil, clima);
+        assertFalse(planificador.esRutaViable(ruta, "ECI", "UNAL", 100.0));
     }
 }

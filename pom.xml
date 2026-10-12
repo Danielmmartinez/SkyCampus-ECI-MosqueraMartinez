@@ -17,18 +17,28 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Versiones de dependencias y plugins -->
         <junit.version>5.10.2</junit.version>
         <mockito.version>5.11.0</mockito.version>
+        <surefire.version>3.2.5</surefire.version>
         <jacoco.version>0.8.11</jacoco.version>
+        <sonar.plugin.version>3.11.0.3922</sonar.plugin.version>
+
+        <!-- Configuración para que SonarQube lea automáticamente el reporte de JaCoCo -->
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
+        <!-- Pruebas unitarias con JUnit 5 (Jupiter) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Mockito para simular servicios externos (API Clima, Aerocivil, etc.) -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
@@ -39,29 +49,43 @@
 
     <build>
         <plugins>
+            <!-- 1. Compilador de Java 17 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
             </plugin>
 
-            <!-- JaCoCo Quality Gate: 85% Line y 75% Branch obligatorio para Infernape -->
+            <!-- 2. Ejecutor de pruebas Surefire (Soporte nativo JUnit 5) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+            </plugin>
+
+            <!-- 3. JaCoCo: Cobertura de código (Líneas >= 85%, Ramas >= 75% obligatorio en Infernape) -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
                 <executions>
                     <execution>
-                        <goals><goal>prepare-agent</goal></goals>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
-                        <goals><goal>report</goal></goals>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>check</id>
-                        <goals><goal>check</goal></goals>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                         <configuration>
                             <rules>
                                 <rule>
@@ -83,6 +107,13 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- 4. Plugin oficial de SonarQube Scanner para Maven -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.plugin.version}</version>
             </plugin>
         </plugins>
     </build>

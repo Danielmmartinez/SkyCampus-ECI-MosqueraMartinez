@@ -1,7 +1,12 @@
+/home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/core/models/ModelosEnterpriseTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/pattern/builder/MisionBuilderTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/pattern/chain/ChainValidadorTest.java
+/home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/pattern/composite/RutaCompositeTest.java
+/home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/pattern/factory/ReporteFactoryTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/pattern/observer/ObserverTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/pattern/strategy/EstrategiaAsignacionTest.java
+/home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/service/AnalyticsEnterpriseServiceTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/service/AnalyticsFlotaServiceTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/service/AsignadorMisionTest.java
 /home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/service/ConsultaFlotaServiceTest.java
+/home/elriff/Documents/Universidad/DOSW/Simio/SkyCampus-ECI-MosqueraMartinez/src/test/java/co/edu/escuelaing/dosw/skycampus/service/PlanificadorRutaEnterpriseTest.java

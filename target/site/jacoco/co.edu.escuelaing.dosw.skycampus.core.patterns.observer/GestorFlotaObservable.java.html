@@ -6,16 +6,16 @@ import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoDrone;
 import java.util.ArrayList;
 import java.util.List;
 
-<span class="nc" id="L9">public class GestorFlotaObservable {</span>
-<span class="nc" id="L10">    private final List&lt;ObservadorDrone&gt; observadores = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L9">public class GestorFlotaObservable {</span>
+<span class="fc" id="L10">    private final List&lt;ObservadorDrone&gt; observadores = new ArrayList&lt;&gt;();</span>
 
     public void suscribir(ObservadorDrone observador) {
-<span class="nc" id="L13">        observadores.add(observador);</span>
-<span class="nc" id="L14">    }</span>
+<span class="fc" id="L13">        observadores.add(observador);</span>
+<span class="fc" id="L14">    }</span>
 
     public void notificarCambio(Drone drone, EstadoDrone nuevoEstado) {
-<span class="nc" id="L17">        observadores.forEach(obs -&gt; obs.onEstadoCambiado(drone, nuevoEstado));</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L17">        observadores.forEach(obs -&gt; obs.onEstadoCambiado(drone, nuevoEstado));</span>
+<span class="fc" id="L18">    }</span>
 
     public int totalObservadores() {
 <span class="nc" id="L21">        return observadores.size();</span>

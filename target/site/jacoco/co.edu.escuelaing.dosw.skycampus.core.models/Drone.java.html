@@ -3,30 +3,36 @@
 import co.edu.escuelaing.dosw.skycampus.core.models.enums.EstadoDrone;
 import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoDrone;
 
-<span class="nc" id="L6">public record Drone(</span>
+<span class="fc" id="L6">public record Drone(</span>
         String id,
         String modelo,
         TipoDrone tipo,
         int bateria,
         boolean disponible,
         EstadoDrone estado,
-        String ubicacion
+        String ubicacion,
+        String sede
 ) {
-    // Constructor de 5 parámetros para mantener compatibilidad total
+    // Constructor para compatibilidad total con Monferno
+    public Drone(String id, String modelo, TipoDrone tipo, int bateria, boolean disponible, EstadoDrone estado, String ubicacion) {
+<span class="fc" id="L18">        this(id, modelo, tipo, bateria, disponible, estado, ubicacion, &quot;ECI&quot;);</span>
+<span class="fc" id="L19">    }</span>
+
+    // Constructor de 5 parámetros para compatibilidad total con Chimchar
     public Drone(String id, String modelo, int bateria, boolean disponible, String ubicacion) {
-<span class="nc bnc" id="L17" title="All 2 branches missed.">        this(id, modelo, TipoDrone.MINI, bateria, disponible, disponible ? EstadoDrone.DISPONIBLE : EstadoDrone.EN_MANTENIMIENTO, ubicacion);</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        this(id, modelo, TipoDrone.MINI, bateria, disponible, disponible ? EstadoDrone.DISPONIBLE : EstadoDrone.EN_MANTENIMIENTO, ubicacion, &quot;ECI&quot;);</span>
+<span class="fc" id="L24">    }</span>
 
     public boolean tieneBateriaSuficiente(int minimo) {
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        return this.bateria &gt;= minimo;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        return this.bateria &gt;= minimo;</span>
     }
 
     public boolean soportaPeso(int pesoGramos) {
-<span class="nc bnc" id="L25" title="All 4 branches missed.">        return this.tipo != null &amp;&amp; this.tipo.getCapacidadGramos() &gt;= pesoGramos;</span>
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">        return this.tipo != null &amp;&amp; this.tipo.getCapacidadGramos() &gt;= pesoGramos;</span>
     }
 
     public Drone conEstado(EstadoDrone nuevoEstado, boolean nuevaDisponibilidad) {
-<span class="nc" id="L29">        return new Drone(this.id, this.modelo, this.tipo, this.bateria, nuevaDisponibilidad, nuevoEstado, this.ubicacion);</span>
+<span class="fc" id="L35">        return new Drone(this.id, this.modelo, this.tipo, this.bateria, nuevaDisponibilidad, nuevoEstado, this.ubicacion, this.sede);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

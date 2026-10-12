@@ -2,20 +2,20 @@
 
 import co.edu.escuelaing.dosw.skycampus.core.models.Mision;
 
-<span class="nc" id="L5">public abstract class ValidadorLanzamiento {</span>
+<span class="fc" id="L5">public abstract class ValidadorLanzamiento {</span>
     protected ValidadorLanzamiento siguiente;
 
     public ValidadorLanzamiento enlazarCon(ValidadorLanzamiento siguiente) {
-<span class="nc" id="L9">        this.siguiente = siguiente;</span>
-<span class="nc" id="L10">        return siguiente;</span>
+<span class="fc" id="L9">        this.siguiente = siguiente;</span>
+<span class="fc" id="L10">        return siguiente;</span>
     }
 
     public abstract void validar(Mision mision);
 
     protected void pasarAlSiguiente(Mision mision) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (siguiente != null) {</span>
-<span class="nc" id="L17">            siguiente.validar(mision);</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if (siguiente != null) {</span>
+<span class="fc" id="L17">            siguiente.validar(mision);</span>
         }
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L19">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

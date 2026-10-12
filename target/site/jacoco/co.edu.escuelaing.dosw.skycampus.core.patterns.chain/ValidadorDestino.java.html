@@ -4,17 +4,17 @@ import co.edu.escuelaing.dosw.skycampus.core.models.Mision;
 
 import java.util.List;
 
-<span class="nc" id="L7">public class ValidadorDestino extends ValidadorLanzamiento {</span>
-<span class="nc" id="L8">    private static final List&lt;String&gt; DESTINOS_VALIDOS = List.of(</span>
+<span class="fc" id="L7">public class ValidadorDestino extends ValidadorLanzamiento {</span>
+<span class="fc" id="L8">    private static final List&lt;String&gt; DESTINOS_VALIDOS = List.of(</span>
             &quot;Bloque A&quot;, &quot;Bloque B&quot;, &quot;Bloque C&quot;, &quot;Bloque D&quot;, &quot;Biblioteca&quot;
     );
 
     @Override
     public void validar(Mision mision) {
-<span class="nc bnc" id="L14" title="All 4 branches missed.">        if (mision.destino() == null || !DESTINOS_VALIDOS.contains(mision.destino())) {</span>
-<span class="nc" id="L15">            throw new IllegalArgumentException(&quot;Destino fuera del campus ECI: &quot; + mision.destino());</span>
+<span class="pc bpc" id="L14" title="1 of 4 branches missed.">        if (mision.destino() == null || !DESTINOS_VALIDOS.contains(mision.destino())) {</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;Destino fuera del campus ECI: &quot; + mision.destino());</span>
         }
-<span class="nc" id="L17">        pasarAlSiguiente(mision);</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L17">        pasarAlSiguiente(mision);</span>
+<span class="fc" id="L18">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

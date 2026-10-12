@@ -1,7 +1,12 @@
 co/edu/escuelaing/dosw/skycampus/pattern/observer/ObserverTest.class
 co/edu/escuelaing/dosw/skycampus/pattern/chain/ChainValidadorTest.class
+co/edu/escuelaing/dosw/skycampus/service/AnalyticsEnterpriseServiceTest.class
+co/edu/escuelaing/dosw/skycampus/pattern/factory/ReporteFactoryTest.class
+co/edu/escuelaing/dosw/skycampus/service/PlanificadorRutaEnterpriseTest.class
 co/edu/escuelaing/dosw/skycampus/service/AsignadorMisionTest.class
+co/edu/escuelaing/dosw/skycampus/core/models/ModelosEnterpriseTest.class
 co/edu/escuelaing/dosw/skycampus/pattern/builder/MisionBuilderTest.class
 co/edu/escuelaing/dosw/skycampus/service/AnalyticsFlotaServiceTest.class
+co/edu/escuelaing/dosw/skycampus/core/patterns/composite/RutaCompositeTest.class
 co/edu/escuelaing/dosw/skycampus/pattern/strategy/EstrategiaAsignacionTest.class
 co/edu/escuelaing/dosw/skycampus/service/ConsultaFlotaServiceTest.class

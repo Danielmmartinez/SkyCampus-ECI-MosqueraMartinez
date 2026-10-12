@@ -8,36 +8,36 @@ import co.edu.escuelaing.dosw.skycampus.core.models.enums.TipoCarga;
 
 import java.time.LocalDateTime;
 
-<span class="nc" id="L11">public class MisionBuilder {</span>
+<span class="fc" id="L11">public class MisionBuilder {</span>
     private String id;
     private Drone drone;
     private String origen;
     private String destino;
-<span class="nc" id="L16">    private int pesoPaqueteGramos = 250;</span>
-<span class="nc" id="L17">    private TipoCarga tipoCarga = TipoCarga.SOBRE;</span>
-<span class="nc" id="L18">    private Prioridad prioridad = Prioridad.NORMAL;</span>
-<span class="nc" id="L19">    private EstadoMision estado = EstadoMision.PENDIENTE;</span>
-<span class="nc" id="L20">    private String notas = &quot;&quot;;</span>
+<span class="fc" id="L16">    private int pesoPaqueteGramos = 250;</span>
+<span class="fc" id="L17">    private TipoCarga tipoCarga = TipoCarga.SOBRE;</span>
+<span class="fc" id="L18">    private Prioridad prioridad = Prioridad.NORMAL;</span>
+<span class="fc" id="L19">    private EstadoMision estado = EstadoMision.PENDIENTE;</span>
+<span class="fc" id="L20">    private String notas = &quot;&quot;;</span>
 
-<span class="nc" id="L22">    public MisionBuilder id(String id) { this.id = id; return this; }</span>
-<span class="nc" id="L23">    public MisionBuilder drone(Drone drone) { this.drone = drone; return this; }</span>
-<span class="nc" id="L24">    public MisionBuilder origen(String origen) { this.origen = origen; return this; }</span>
-<span class="nc" id="L25">    public MisionBuilder destino(String destino) { this.destino = destino; return this; }</span>
-<span class="nc" id="L26">    public MisionBuilder pesoPaqueteGramos(int peso) { this.pesoPaqueteGramos = peso; return this; }</span>
-<span class="nc" id="L27">    public MisionBuilder tipoCarga(TipoCarga carga) { this.tipoCarga = carga; return this; }</span>
-<span class="nc" id="L28">    public MisionBuilder prioridad(Prioridad prioridad) { this.prioridad = prioridad; return this; }</span>
+<span class="fc" id="L22">    public MisionBuilder id(String id) { this.id = id; return this; }</span>
+<span class="fc" id="L23">    public MisionBuilder drone(Drone drone) { this.drone = drone; return this; }</span>
+<span class="fc" id="L24">    public MisionBuilder origen(String origen) { this.origen = origen; return this; }</span>
+<span class="fc" id="L25">    public MisionBuilder destino(String destino) { this.destino = destino; return this; }</span>
+<span class="fc" id="L26">    public MisionBuilder pesoPaqueteGramos(int peso) { this.pesoPaqueteGramos = peso; return this; }</span>
+<span class="fc" id="L27">    public MisionBuilder tipoCarga(TipoCarga carga) { this.tipoCarga = carga; return this; }</span>
+<span class="fc" id="L28">    public MisionBuilder prioridad(Prioridad prioridad) { this.prioridad = prioridad; return this; }</span>
     public MisionBuilder prioridad(int p) {
-<span class="nc bnc" id="L30" title="All 4 branches missed.">        this.prioridad = (p == 1) ? Prioridad.URGENTE : ((p == 2) ? Prioridad.NORMAL : Prioridad.BAJO);</span>
-<span class="nc" id="L31">        return this;</span>
+<span class="fc bfc" id="L30" title="All 4 branches covered.">        this.prioridad = (p == 1) ? Prioridad.URGENTE : ((p == 2) ? Prioridad.NORMAL : Prioridad.BAJO);</span>
+<span class="fc" id="L31">        return this;</span>
     }
 <span class="nc" id="L33">    public MisionBuilder estado(EstadoMision estado) { this.estado = estado; return this; }</span>
-<span class="nc" id="L34">    public MisionBuilder notas(String notas) { this.notas = notas; return this; }</span>
+<span class="fc" id="L34">    public MisionBuilder notas(String notas) { this.notas = notas; return this; }</span>
 
     public Mision build() {
-<span class="nc bnc" id="L37" title="All 8 branches missed.">        if (id == null || drone == null || origen == null || destino == null) {</span>
-<span class="nc" id="L38">            throw new IllegalStateException(&quot;id, drone, origen y destino son campos obligatorios&quot;);</span>
+<span class="fc bfc" id="L37" title="All 8 branches covered.">        if (id == null || drone == null || origen == null || destino == null) {</span>
+<span class="fc" id="L38">            throw new IllegalStateException(&quot;id, drone, origen y destino son campos obligatorios&quot;);</span>
         }
-<span class="nc" id="L40">        return new Mision(id, drone, origen, destino, pesoPaqueteGramos, tipoCarga, prioridad, estado, LocalDateTime.now(), notas);</span>
+<span class="fc" id="L40">        return new Mision(id, drone, origen, destino, pesoPaqueteGramos, tipoCarga, prioridad, estado, LocalDateTime.now(), notas);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

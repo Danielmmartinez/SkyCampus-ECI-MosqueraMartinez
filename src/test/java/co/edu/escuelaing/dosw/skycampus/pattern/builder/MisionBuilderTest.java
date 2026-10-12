@@ -47,4 +47,17 @@ class MisionBuilderTest {
         assertThrows(IllegalStateException.class, () -> new MisionBuilder().id("M-01").drone(drone).destino("Biblioteca").build());
         assertThrows(IllegalStateException.class, () -> new MisionBuilder().id("M-01").drone(drone).origen("Bloque A").build());
     }
+
+    @Test
+    @DisplayName("Builder: Prioridad numérica 1, 2 y 3")
+    void builder_prioridadNumerica() {
+        Drone d = new Drone("D-01", "DJI", 80, true, "A");
+        Mision m1 = new MisionBuilder().id("1").drone(d).origen("A").destino("B").prioridad(1).build();
+        Mision m2 = new MisionBuilder().id("2").drone(d).origen("A").destino("B").prioridad(2).build();
+        Mision m3 = new MisionBuilder().id("3").drone(d).origen("A").destino("B").prioridad(3).build();
+
+        assertEquals(Prioridad.URGENTE, m1.prioridad());
+        assertEquals(Prioridad.NORMAL, m2.prioridad());
+        assertEquals(Prioridad.BAJO, m3.prioridad());
+    }
 }

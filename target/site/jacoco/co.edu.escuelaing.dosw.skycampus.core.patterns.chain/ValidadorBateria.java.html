@@ -2,13 +2,13 @@
 
 import co.edu.escuelaing.dosw.skycampus.core.models.Mision;
 
-<span class="nc" id="L5">public class ValidadorBateria extends ValidadorLanzamiento {</span>
+<span class="fc" id="L5">public class ValidadorBateria extends ValidadorLanzamiento {</span>
     @Override
     public void validar(Mision mision) {
-<span class="nc bnc" id="L8" title="All 4 branches missed.">        if (mision.drone() != null &amp;&amp; mision.drone().bateria() &lt; 30) {</span>
-<span class="nc" id="L9">            throw new IllegalStateException(&quot;Batería inferior al 30%: &quot; + mision.drone().bateria() + &quot;%&quot;);</span>
+<span class="pc bpc" id="L8" title="1 of 4 branches missed.">        if (mision.drone() != null &amp;&amp; mision.drone().bateria() &lt; 30) {</span>
+<span class="fc" id="L9">            throw new IllegalStateException(&quot;Batería inferior al 30%: &quot; + mision.drone().bateria() + &quot;%&quot;);</span>
         }
-<span class="nc" id="L11">        pasarAlSiguiente(mision);</span>
-<span class="nc" id="L12">    }</span>
+<span class="fc" id="L11">        pasarAlSiguiente(mision);</span>
+<span class="fc" id="L12">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

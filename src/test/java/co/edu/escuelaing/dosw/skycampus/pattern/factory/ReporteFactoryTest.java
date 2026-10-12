@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReporteFactoryTest {
 
     @Test
-    @DisplayName("Abstract Factory: ECI genera reporte en HTML")
+    @DisplayName("Abstract Factory: ECI genera reporte en HTML completo")
     void factoryECI_generaHTML() {
         ReporteSedeFactory factory = new ReporteECIFactory();
         assertEquals(".html", factory.getExtension());
@@ -21,18 +21,20 @@ class ReporteFactoryTest {
     }
 
     @Test
-    @DisplayName("Abstract Factory: UNAL genera reporte en PDF")
+    @DisplayName("Abstract Factory: UNAL genera reporte en PDF completo")
     void factoryUNAL_generaPDF() {
         ReporteSedeFactory factory = new ReporteUNALFactory();
         assertEquals(".pdf", factory.getExtension());
         assertTrue(factory.crearHeader().formatearHeader("UNAL", "2026-10-08").contains("PDF-HEADER"));
+        assertTrue(factory.crearCuerpo().formatearCuerpo("80").contains("PDF-BODY"));
     }
 
     @Test
-    @DisplayName("Abstract Factory: Uniandes genera reporte en JSON")
+    @DisplayName("Abstract Factory: Uniandes genera reporte en JSON completo")
     void factoryUniandes_generaJSON() {
         ReporteSedeFactory factory = new ReporteUniandesFactory();
         assertEquals(".json", factory.getExtension());
         assertTrue(factory.crearHeader().formatearHeader("Uniandes", "2026-10-08").contains("\"universidad\""));
+        assertTrue(factory.crearCuerpo().formatearCuerpo("50").contains("\"payload\""));
     }
 }

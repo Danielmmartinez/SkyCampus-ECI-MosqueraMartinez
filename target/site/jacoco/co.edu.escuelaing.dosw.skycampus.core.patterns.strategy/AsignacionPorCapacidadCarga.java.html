@@ -7,13 +7,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-<span class="nc" id="L10">public class AsignacionPorCapacidadCarga implements EstrategiaAsignacion {</span>
+<span class="fc" id="L10">public class AsignacionPorCapacidadCarga implements EstrategiaAsignacion {</span>
     @Override
     public Optional&lt;Drone&gt; seleccionarDrone(List&lt;Drone&gt; flota, Mision mision) {
-<span class="nc" id="L13">        return flota.stream()</span>
-<span class="nc" id="L14">                .filter(Drone::disponible)</span>
-<span class="nc" id="L15">                .filter(d -&gt; d.soportaPeso(mision.pesoPaqueteGramos()))</span>
-<span class="nc" id="L16">                .max(Comparator.comparingInt(Drone::bateria));</span>
+<span class="fc" id="L13">        return flota.stream()</span>
+<span class="fc" id="L14">                .filter(Drone::disponible)</span>
+<span class="fc" id="L15">                .filter(d -&gt; d.soportaPeso(mision.pesoPaqueteGramos()))</span>
+<span class="fc" id="L16">                .max(Comparator.comparingInt(Drone::bateria));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,6 +1,7 @@
 package co.edu.escuelaing.dosw.skycampus.core.patterns.factory;
 
 public class ReporteECIFactory implements ReporteSedeFactory {
+
     @Override
     public FormateadorHeader crearHeader() {
         return (sede, fecha) -> "<header><h1>SkyCampus ECI - " + fecha + "</h1></header>";
