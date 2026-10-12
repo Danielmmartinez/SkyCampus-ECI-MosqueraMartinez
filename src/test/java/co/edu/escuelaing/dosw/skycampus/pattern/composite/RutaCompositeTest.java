@@ -1,4 +1,5 @@
-package co.edu.escuelaing.dosw.skycampus.pattern;
+package co.edu.escuelaing.dosw.skycampus.pattern.composite;
 
-public class RutaCompositeTest {
+public class RutaCompositeTest
+{
 }
